@@ -1,0 +1,17 @@
+{% extends "flights/master.html" %}
+
+{% block title %} 
+Flight Details 
+{% endblock %}
+
+{% block body %}
+    Welcome to Flight's Detail Page
+    <h1> Details of Flights: {{ flights.id }}</h1>
+    <ul>
+       <li> ORIGIN: {{flights.origin.city}}</li>
+       <li> DESTINATION: {{flights.dest.city}}</li>
+    </ul>
+<a href="{% url 'index' %}">
+    {{ flights }}
+</a>
+{% endblock %}

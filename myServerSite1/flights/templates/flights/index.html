@@ -1,0 +1,22 @@
+{% extends "flights/master.html" %}
+
+{% block title %}
+Flights 
+{% endblock %}
+
+{% block body %}
+    Welcome to Flight's Index page
+    <h1>List of Flights:</h1>
+    <ul>
+        {% for f in flights %}
+        <a href href="{% url 'index' %}"><li> {{f}} </li></a>
+        {%endfor%}
+    </ul>
+
+    <h1>List of Airports:</h1>
+    <ul>
+        {% for a in airports %}
+        <li> {{a}} </li>
+        {%endfor%}
+    </ul>
+{% endblock %}
