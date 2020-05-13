@@ -1,23 +1,43 @@
-<html>
-    <head>
-        <title>
-            Login
-        </title>
-    </head>
-    <body>
-        <h1>
-            LOGIN to Continue
-        </h1>
-        {% if message %}
-        <h3> {{message}}</h3>
-        {% endif %}
+{% extends "flights/master.html" %}
+{% load static %}
 
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <input name="username" type="text"/>
-            <input name="password" type="password"/>
-            <input type="submit" value="login"/>
-        </form>
-        <hr>
-    </body>
-</html>
+{% block head %} 
+{% endblock %}
+
+{% block title %}
+Login 
+{% endblock %}
+    
+{% block nav %}
+{% endblock %} 
+
+{% block replaceBody %}
+<header class="masthead">
+    <section class="page-section" id="services">
+        <div class="container">
+            <div class="text-center">
+                <h1>
+                    LOGIN to Continue
+                </h1>
+                {% if message %}
+                <h3> {{message}}</h3>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                     <p class="text-muted"> <ul>
+                        <form action="{% url 'login' %}" method="post">
+                            {% csrf_token %}
+                            <input name="username" type="text"/>
+                            <input name="password" type="password"/><br><br>
+                            <input type="submit" value="login"/>
+                        </form>
+                        <hr>
+                    </ul></p>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+    </header>
+{% endblock %}
