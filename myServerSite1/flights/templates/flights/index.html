@@ -1,22 +1,44 @@
 {% extends "flights/master.html" %}
 
+{% block head %} 
+{% endblock %}
+
 {% block title %}
 Flights 
 {% endblock %}
 
-{% block body %}
-    Welcome to Flight's Index page
-    <h1>List of Flights:</h1>
-    <ul>
-        {% for f in flights %}
-        <a href href="{% url 'index' %}"><li> {{f}} </li></a>
-        {%endfor%}
-    </ul>
 
-    <h1>List of Airports:</h1>
-    <ul>
-        {% for a in airports %}
-        <li> {{a}} </li>
-        {%endfor%}
-    </ul>
+{% block replaceBody %}
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Welcome to Flight's Index page</h2>
+            <h3 class="section-subheading text-muted">Flights and Aiports</h3>
+        </div>
+        <div class="row text-left">
+            <div class="col-md-6">
+                <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i></span>
+                <h2>List of Flights:</h2>
+                <p class="text-muted"> <ul>
+                    {% for f in flights %}
+                    <a href="{% url 'flight' f.id%}">
+                     {{f}} </a><br>
+                    {%endfor%}
+                </ul></p>
+            </div>
+            <div class="col-md-6">
+                <span class="fa-stack fa-4x"><i class="fas fa-circle fa-stack-2x text-primary"></i><i class="fas fa-laptop fa-stack-1x fa-inverse"></i></span>
+                <h2>List of Airports:</h2>
+                <p class="text-muted">
+                    <ul>
+                        {% for a in airports %}
+                        {{a}}<br>
+                        {%endfor%}
+                    </ul>
+                </p>
+            </div>
+            
+        </div>
+    </div>
+</section>
 {% endblock %}
