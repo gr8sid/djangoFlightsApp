@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'flights.apps.FlightsConfig',
+    'rest_framework',
     # 'registration.apps.RegistrationConfig'
 ]
 
