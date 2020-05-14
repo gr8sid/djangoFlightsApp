@@ -81,6 +81,7 @@ class FlightList(APIView):
 def covid(request):
     response = requests.get('https://api.covid19api.com/total/country/canada')
     indiaCases = response.json()
+    country =indiaCases[-1]['Country']
     cases = indiaCases[-1]['Confirmed']
     active = indiaCases[-1]['Active']
     recovered = indiaCases[-1]['Recovered']
@@ -90,25 +91,20 @@ def covid(request):
     date_time_str = indiaCases[-1]['Date']
     # date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S.%f')
     # date = date_time_obj.date()
-
     dt = arrow.get(date_time_str)
     date = dt.date()
 
-    return render(request, 'flights/covid.html', {
-        "indiaCases": indiaCases[-1], 
-        "confirmed": cases,
-        "active": active,
-        "recovered": recovered,
-        "deaths": deaths,
-        "date": date,
-        })
-    # {
-    #     # 'Country': indiaCases['Country'],
-    #     # 'Confirmed': indiaCases['Confirmed'],
-    #     # 'Deaths': indiaCases['Deaths'],
-    #     # 'Recovered': indiaCases['Recovered'],
-    #     # 'Active': indiaCases['Active'],
-    #     # 'Date': indiaCases['Date'],
-        
-    # }
+    context = {"indiaCases": indiaCases[-1], 
+            "confirmed": cases,
+            "country": country,
+            "active": active,
+            "recovered": recovered,
+            "deaths": deaths,
+            "date": date}
+
+    if not request.user.is_authenticated:
+        return render(request, "flights/covid.html", {**context, "message":None})
+
+    else:
+        return render(request, 'flights/covid.html', {**context, "message":"LoggedIN"})
     
