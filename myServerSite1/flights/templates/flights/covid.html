@@ -8,6 +8,10 @@
 Flight Details 
 {% endblock %}
 
+{% block nav %}
+<li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'logout' %}">Hi {{user.first_name }}, Logout</a></li>            
+{% endblock %} 
+
 {% block replaceBody %}
   
   <header class="masthead">
